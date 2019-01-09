@@ -1,6 +1,7 @@
 package gov.census.gov.census.utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -35,5 +36,16 @@ public class TestBase {
     public void tearDownMethod(){
         driver.quit();
         softAssert.assertAll();
+    }
+
+    public void homepage(){
+        driver.get("https://www.census.gov/");
+    }
+
+    public void clickLibrary(){
+        homepage();
+        driver.findElement(By.xpath("//button[@class='prefix-overlay-close prefix-overlay-action-later']")).click();
+
+        driver.findElement(By.xpath("//a[@id='data-uscb-header-nav-item-link-2']")).click();
     }
 }
